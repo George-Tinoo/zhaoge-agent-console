@@ -1,6 +1,6 @@
 import Foundation
 
-struct Message: Codable, Identifiable, Equatable {
+struct Message: Codable, Identifiable, Equatable, Sendable {
     let id: String
     var sessionId: String
     var role: MessageRole
@@ -8,6 +8,7 @@ struct Message: Codable, Identifiable, Equatable {
     var contentType: ContentType
     var agentId: String?
     var createdAt: Date
+    var metadata: [String: String]
 
     init(
         id: String = UUID().uuidString,
@@ -16,7 +17,8 @@ struct Message: Codable, Identifiable, Equatable {
         content: String,
         contentType: ContentType = .text,
         agentId: String? = nil,
-        createdAt: Date = .now
+        createdAt: Date = .now,
+        metadata: [String: String] = [:]
     ) {
         self.id = id
         self.sessionId = sessionId
@@ -25,23 +27,28 @@ struct Message: Codable, Identifiable, Equatable {
         self.contentType = contentType
         self.agentId = agentId
         self.createdAt = createdAt
+        self.metadata = metadata
     }
 }
 
-enum MessageRole: String, Codable, CaseIterable, Identifiable {
+enum MessageRole: String, Codable, CaseIterable, Identifiable, Sendable {
     case user
+    case assistant
     case agent
     case system
+    case tool
 
     var id: String { rawValue }
 }
 
-enum ContentType: String, Codable, CaseIterable, Identifiable {
+enum ContentType: String, Codable, CaseIterable, Identifiable, Sendable {
     case text
+    case markdown
     case image
     case audio
     case code
-    case markdown
+    case file
+    case event
 
     var id: String { rawValue }
 }

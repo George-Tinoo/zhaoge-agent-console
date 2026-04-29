@@ -1,6 +1,16 @@
 import Foundation
 
 actor LocalStorage {
+    enum Key: String, CaseIterable, Sendable {
+        case currentUser
+        case agents
+        case devices
+        case sessions
+        case projects
+        case tasks
+        case messages
+    }
+
     static let shared = LocalStorage()
 
     private let userDefaults: UserDefaults
@@ -24,6 +34,10 @@ actor LocalStorage {
         userDefaults.set(data, forKey: key)
     }
 
+    func save<T: Encodable>(_ value: T, for key: Key) throws {
+        try save(value, forKey: key.rawValue)
+    }
+
     func load<T: Decodable>(_ type: T.Type, forKey key: String) throws -> T? {
         guard let data = userDefaults.data(forKey: key) else {
             return nil
@@ -31,8 +45,16 @@ actor LocalStorage {
         return try decoder.decode(type, from: data)
     }
 
+    func load<T: Decodable>(_ type: T.Type, for key: Key) throws -> T? {
+        try load(type, forKey: key.rawValue)
+    }
+
     func removeValue(forKey key: String) {
         userDefaults.removeObject(forKey: key)
+    }
+
+    func removeValue(for key: Key) {
+        removeValue(forKey: key.rawValue)
     }
 
     func saveArray<T: Encodable>(_ values: [T], forKey key: String) throws {
@@ -41,5 +63,9 @@ actor LocalStorage {
 
     func loadArray<T: Decodable>(_ type: T.Type, forKey key: String) throws -> [T] {
         try load([T].self, forKey: key) ?? []
+    }
+
+    func clearAll() {
+        Key.allCases.forEach { removeValue(for: $0) }
     }
 }

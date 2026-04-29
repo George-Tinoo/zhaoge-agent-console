@@ -1,13 +1,18 @@
 import Foundation
 
-struct Project: Codable, Identifiable, Equatable {
+struct Project: Codable, Identifiable, Equatable, Sendable {
     let id: String
     var name: String
     var summary: String
     var status: ProjectStatus
     var taskIds: [String]
+    var ownerAgentId: String?
     var createdAt: Date
     var updatedAt: Date
+
+    var isOpen: Bool {
+        status == .active || status == .paused
+    }
 
     init(
         id: String = UUID().uuidString,
@@ -15,6 +20,7 @@ struct Project: Codable, Identifiable, Equatable {
         summary: String = "",
         status: ProjectStatus = .active,
         taskIds: [String] = [],
+        ownerAgentId: String? = nil,
         createdAt: Date = .now,
         updatedAt: Date = .now
     ) {
@@ -23,12 +29,13 @@ struct Project: Codable, Identifiable, Equatable {
         self.summary = summary
         self.status = status
         self.taskIds = taskIds
+        self.ownerAgentId = ownerAgentId
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
 }
 
-enum ProjectStatus: String, Codable, CaseIterable, Identifiable {
+enum ProjectStatus: String, Codable, CaseIterable, Identifiable, Sendable {
     case active
     case paused
     case completed

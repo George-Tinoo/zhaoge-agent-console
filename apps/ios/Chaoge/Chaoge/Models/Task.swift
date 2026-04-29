@@ -1,6 +1,6 @@
 import Foundation
 
-struct TaskItem: Codable, Identifiable, Equatable {
+struct TaskItem: Codable, Identifiable, Equatable, Sendable {
     let id: String
     var title: String
     var detail: String
@@ -11,6 +11,10 @@ struct TaskItem: Codable, Identifiable, Equatable {
     var dueAt: Date?
     var createdAt: Date
     var updatedAt: Date
+
+    var isTerminal: Bool {
+        status == .completed || status == .cancelled
+    }
 
     init(
         id: String = UUID().uuidString,
@@ -37,7 +41,7 @@ struct TaskItem: Codable, Identifiable, Equatable {
     }
 }
 
-enum TaskStatus: String, Codable, CaseIterable, Identifiable {
+enum TaskStatus: String, Codable, CaseIterable, Identifiable, Sendable {
     case pending
     case running
     case blocked
@@ -47,11 +51,24 @@ enum TaskStatus: String, Codable, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
-enum TaskPriority: String, Codable, CaseIterable, Identifiable {
+enum TaskPriority: String, Codable, CaseIterable, Identifiable, Sendable, Comparable {
     case low
     case medium
     case high
     case urgent
 
     var id: String { rawValue }
+
+    private var weight: Int {
+        switch self {
+        case .low: return 0
+        case .medium: return 1
+        case .high: return 2
+        case .urgent: return 3
+        }
+    }
+
+    static func < (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
+        lhs.weight < rhs.weight
+    }
 }

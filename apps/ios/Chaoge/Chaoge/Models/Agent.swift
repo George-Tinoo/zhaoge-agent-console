@@ -1,6 +1,6 @@
 import Foundation
 
-struct Agent: Codable, Identifiable, Equatable {
+struct Agent: Codable, Identifiable, Equatable, Sendable {
     let id: String
     var name: String
     var avatar: String?
@@ -8,9 +8,14 @@ struct Agent: Codable, Identifiable, Equatable {
     var status: AgentStatus
     var capabilities: [String]
     var roleDescription: String?
+    var modelName: String?
 
     var isSupervisor: Bool {
         type == .supervisor
+    }
+
+    var isAvailable: Bool {
+        status == .online || status == .thinking
     }
 
     init(
@@ -20,7 +25,8 @@ struct Agent: Codable, Identifiable, Equatable {
         type: AgentType,
         status: AgentStatus = .offline,
         capabilities: [String] = [],
-        roleDescription: String? = nil
+        roleDescription: String? = nil,
+        modelName: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -29,21 +35,27 @@ struct Agent: Codable, Identifiable, Equatable {
         self.status = status
         self.capabilities = capabilities
         self.roleDescription = roleDescription
+        self.modelName = modelName
     }
 }
 
-enum AgentType: String, Codable, CaseIterable, Identifiable {
+enum AgentType: String, Codable, CaseIterable, Identifiable, Sendable {
     case supervisor
+    case strategist
+    case coder
+    case researcher
+    case executor
     case specialist
 
     var id: String { rawValue }
 }
 
-enum AgentStatus: String, Codable, CaseIterable, Identifiable {
+enum AgentStatus: String, Codable, CaseIterable, Identifiable, Sendable {
     case online
     case offline
     case busy
     case thinking
+    case error
 
     var id: String { rawValue }
 }
