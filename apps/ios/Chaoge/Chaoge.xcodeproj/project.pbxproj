@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0000012B8F000100000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0001012B8F000100000001 /* ContentView.swift */; };
+		0C0000022B8F000100000001 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0001022B8F000100000001 /* Constants.swift */; };
+		0C0000032B8F000100000001 /* InfrastructureModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0001032B8F000100000001 /* InfrastructureModelsTests.swift */; };
+		0C0000042B8F000100000001 /* ThemeComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0001042B8F000100000001 /* ThemeComponentTests.swift */; };
+		0C0000052B8F000100000001 /* HomeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0001052B8F000100000001 /* HomeFeatureTests.swift */; };
+		0C0000062B8F000100000001 /* MainTabFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0001062B8F000100000001 /* MainTabFeatureTests.swift */; };
 		0A0000012B8F000100000001 /* ChaogeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000022B8F000100000001 /* ChaogeApp.swift */; };
 		0A0000032B8F000100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0000042B8F000100000001 /* Assets.xcassets */; };
 		0B0000012B8F000100000001 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0001012B8F000100000001 /* NetworkManager.swift */; };
@@ -41,7 +47,25 @@
 		0B00001E2B8F000100000001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B00011E2B8F000100000001 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0C0005022B8F000100000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A0000142B8F000100000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A0000102B8F000100000001;
+			remoteInfo = Chaoge;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0C0001012B8F000100000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0C0001022B8F000100000001 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0C0001032B8F000100000001 /* InfrastructureModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfrastructureModelsTests.swift; sourceTree = "<group>"; };
+		0C0001042B8F000100000001 /* ThemeComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeComponentTests.swift; sourceTree = "<group>"; };
+		0C0001052B8F000100000001 /* HomeFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeatureTests.swift; sourceTree = "<group>"; };
+		0C0001062B8F000100000001 /* MainTabFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabFeatureTests.swift; sourceTree = "<group>"; };
+		0C0001072B8F000100000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C0002012B8F000100000001 /* ChaogeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChaogeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0000022B8F000100000001 /* ChaogeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaogeApp.swift; sourceTree = "<group>"; };
 		0A0000042B8F000100000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A0000052B8F000100000001 /* Chaoge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chaoge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +109,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0C0004012B8F000100000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -92,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0000082B8F000100000001 /* Chaoge */,
+				0C0003022B8F000100000001 /* ChaogeTests */,
 				0A0000092B8F000100000001 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,6 +136,7 @@
 				0A00000C2B8F000100000001 /* Features */,
 				0A00000D2B8F000100000001 /* Models */,
 				0A00000E2B8F000100000001 /* UI */,
+				0C0003012B8F000100000001 /* Utils */,
 				0A00000F2B8F000100000001 /* Resources */,
 			);
 			path = Chaoge;
@@ -113,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0000052B8F000100000001 /* Chaoge.app */,
+				0C0002012B8F000100000001 /* ChaogeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0000022B8F000100000001 /* ChaogeApp.swift */,
+				0C0001012B8F000100000001 /* ContentView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -133,8 +168,28 @@
 			isa = PBXGroup;
 			children = (
 				0A0000042B8F000100000001 /* Assets.xcassets */,
+				0C0001072B8F000100000001 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		0C0003012B8F000100000001 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0C0001022B8F000100000001 /* Constants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0C0003022B8F000100000001 /* ChaogeTests */ = {
+			isa = PBXGroup;
+			children = (
+				0C0001032B8F000100000001 /* InfrastructureModelsTests.swift */,
+				0C0001042B8F000100000001 /* ThemeComponentTests.swift */,
+				0C0001052B8F000100000001 /* HomeFeatureTests.swift */,
+				0C0001062B8F000100000001 /* MainTabFeatureTests.swift */,
+			);
+			path = ChaogeTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +211,24 @@
 			productName = Chaoge;
 			productReference = 0A0000052B8F000100000001 /* Chaoge.app */;
 			productType = "com.apple.product-type.application";
+		};
+		0C0005012B8F000100000001 /* ChaogeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C0005042B8F000100000001 /* Build configuration list for PBXNativeTarget "ChaogeTests" */;
+			buildPhases = (
+				0C0004032B8F000100000001 /* Sources */,
+				0C0004012B8F000100000001 /* Frameworks */,
+				0C0004022B8F000100000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0C0005032B8F000100000001 /* PBXTargetDependency */,
+			);
+			name = ChaogeTests;
+			productName = ChaogeTests;
+			productReference = 0C0002012B8F000100000001 /* ChaogeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -200,6 +273,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0C0004022B8F000100000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -208,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0000012B8F000100000001 /* ChaogeApp.swift in Sources */,
+				0C0000012B8F000100000001 /* ContentView.swift in Sources */,
 				0B0000012B8F000100000001 /* NetworkManager.swift in Sources */,
 				0B0000022B8F000100000001 /* AppState.swift in Sources */,
 				0B0000032B8F000100000001 /* LocalStorage.swift in Sources */,
@@ -238,10 +319,30 @@
 				0B00001C2B8F000100000001 /* Colors.swift in Sources */,
 				0B00001D2B8F000100000001 /* Fonts.swift in Sources */,
 				0B00001E2B8F000100000001 /* Theme.swift in Sources */,
+				0C0000022B8F000100000001 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C0004032B8F000100000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C0000032B8F000100000001 /* InfrastructureModelsTests.swift in Sources */,
+				0C0000042B8F000100000001 /* ThemeComponentTests.swift in Sources */,
+				0C0000052B8F000100000001 /* HomeFeatureTests.swift in Sources */,
+				0C0000062B8F000100000001 /* MainTabFeatureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0C0005032B8F000100000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A0000102B8F000100000001 /* Chaoge */;
+			targetProxy = 0C0005022B8F000100000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0A0000162B8F000100000001 /* Debug */ = {
@@ -285,17 +386,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Chaoge/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ai.chaoge.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -307,18 +405,51 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Chaoge/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ai.chaoge.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0C0005052B8F000100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.chaoge.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chaoge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Chaoge";
+			};
+			name = Debug;
+		};
+		0C0005062B8F000100000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.chaoge.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chaoge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Chaoge";
 			};
 			name = Release;
 		};
