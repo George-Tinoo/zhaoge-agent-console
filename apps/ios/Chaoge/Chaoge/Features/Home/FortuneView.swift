@@ -11,56 +11,84 @@ struct FortuneView: View {
     }()
 
     var body: some View {
-        CrystalCard {
+        CrystalCard(isActive: true) {
             VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
-                HStack {
-                    VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.xsmall) {
-                        Text("今日运势")
-                            .font(ChaogeFonts.h2)
-                            .foregroundStyle(ChaogeColors.textPrimary)
-                        Text(dateFormatter.string(from: fortune.date))
-                            .font(ChaogeFonts.small)
-                            .foregroundStyle(ChaogeColors.textSecondary)
-                    }
-
-                    Spacer()
-
-                    Text("\(fortune.overall)")
-                        .font(ChaogeFonts.display)
-                        .foregroundStyle(ChaogeColors.infoRefraction)
-                        .shadow(color: ChaogeColors.refractionCyan.opacity(0.38), radius: 16)
-                }
-
-                VStack(spacing: ChaogeTheme.Spacing.medium) {
-                    FortuneScoreRow(title: "事业", score: fortune.career, color: ChaogeColors.refractionCyan)
-                    FortuneScoreRow(title: "财运", score: fortune.wealth, color: ChaogeColors.refractionGold)
-                    FortuneScoreRow(title: "情感", score: fortune.love, color: ChaogeColors.refractionRose)
-                    FortuneScoreRow(title: "健康", score: fortune.health, color: ChaogeColors.success)
-                }
-
-                HStack(spacing: ChaogeTheme.Spacing.large) {
-                    FortuneTagGroup(title: "幸运色", values: fortune.luckyColors)
-                    FortuneTagGroup(title: "幸运数字", values: fortune.luckyNumbers.map(String.init))
-                }
+                header
+                scoreBreakdown
+                luckySection
             }
+        }
+        .accessibilityElement(children: .contain)
+    }
+
+    private var header: some View {
+        HStack(alignment: .center) {
+            VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.xsmall) {
+                Text("今日运势")
+                    .font(ChaogeFonts.h2)
+                    .foregroundStyle(ChaogeColors.textPrimary)
+                Text(dateFormatter.string(from: fortune.date))
+                    .font(ChaogeFonts.small)
+                    .foregroundStyle(ChaogeColors.textSecondary)
+            }
+
+            Spacer()
+
+            VStack(spacing: 0) {
+                Text("\(fortune.overall)")
+                    .font(ChaogeFonts.display)
+                    .foregroundStyle(ChaogeColors.infoRefraction)
+                    .shadow(color: ChaogeColors.refractionCyan.opacity(0.38), radius: 16)
+                Text("整体")
+                    .font(ChaogeFonts.caption)
+                    .foregroundStyle(ChaogeColors.textTertiary)
+            }
+            .accessibilityLabel("整体运势\(fortune.overall)分")
+        }
+    }
+
+    private var scoreBreakdown: some View {
+        VStack(spacing: ChaogeTheme.Spacing.medium) {
+            ForEach(fortune.scoreItems) { item in
+                FortuneScoreRow(item: item, color: color(for: item.kind))
+            }
+        }
+    }
+
+    private var luckySection: some View {
+        HStack(alignment: .top, spacing: ChaogeTheme.Spacing.large) {
+            FortuneTagGroup(title: "幸运色", values: fortune.luckyColors)
+            FortuneTagGroup(title: "幸运数字", values: fortune.luckyNumbers.map(String.init))
+        }
+    }
+
+    private func color(for kind: FortuneScoreItem.Kind) -> Color {
+        switch kind {
+        case .career:
+            return ChaogeColors.refractionCyan
+        case .wealth:
+            return ChaogeColors.refractionGold
+        case .love:
+            return ChaogeColors.refractionRose
+        case .health:
+            return ChaogeColors.success
         }
     }
 }
 
 private struct FortuneScoreRow: View {
-    let title: String
-    let score: Int
+    let item: FortuneScoreItem
     let color: Color
 
     var body: some View {
         VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.xsmall) {
             HStack {
-                Text(title)
+                Text(item.title)
                     .font(ChaogeFonts.small)
                     .foregroundStyle(ChaogeColors.textSecondary)
                 Spacer()
-                Text("\(score)")
-                    .font(ChaogeFonts.small.weight(.semibold))
+                Text("\(item.score)")
+                    .font(ChaogeFonts.bodyStrong)
                     .foregroundStyle(ChaogeColors.textPrimary)
             }
 
@@ -70,11 +98,12 @@ private struct FortuneScoreRow: View {
                         .fill(ChaogeColors.siliconDark.opacity(0.8))
                     Capsule()
                         .fill(color)
-                        .frame(width: max(0, proxy.size.width * CGFloat(score) / 100))
+                        .frame(width: max(0, min(proxy.size.width, proxy.size.width * CGFloat(item.score) / 100)))
                         .shadow(color: color.opacity(0.45), radius: 8)
                 }
             }
-            .frame(height: 6)
+            .frame(height: 7)
+            .accessibilityLabel("\(item.title)\(item.score)分")
         }
     }
 }
@@ -92,18 +121,12 @@ private struct FortuneTagGroup: View {
             HStack(spacing: ChaogeTheme.Spacing.small) {
                 ForEach(values, id: \.self) { value in
                     Text(value)
-                        .font(ChaogeFonts.caption.weight(.semibold))
+                        .font(ChaogeFonts.caption)
                         .foregroundStyle(ChaogeColors.textPrimary)
                         .padding(.horizontal, ChaogeTheme.Spacing.medium)
                         .padding(.vertical, 6)
-                        .background {
-                            Capsule()
-                                .fill(ChaogeColors.siliconLight.opacity(0.28))
-                        }
-                        .overlay {
-                            Capsule()
-                                .stroke(ChaogeColors.siliconPure.opacity(0.24), lineWidth: ChaogeTheme.Stroke.hairline)
-                        }
+                        .background(Capsule().fill(ChaogeColors.siliconLight.opacity(0.28)))
+                        .overlay(Capsule().stroke(ChaogeColors.siliconPure.opacity(0.24), lineWidth: ChaogeTheme.Stroke.hairline))
                 }
             }
         }

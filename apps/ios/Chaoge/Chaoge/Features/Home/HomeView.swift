@@ -18,9 +18,20 @@ struct HomeView: View {
 
                     if let fortune = viewModel.fortune {
                         FortuneView(fortune: fortune)
+                    } else {
+                        CrystalCard {
+                            HStack(spacing: ChaogeTheme.Spacing.medium) {
+                                ProgressView()
+                                    .tint(ChaogeColors.refractionCyan)
+                                Text("正在观测今日天象……")
+                                    .font(ChaogeFonts.body)
+                                    .foregroundStyle(ChaogeColors.textSecondary)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
 
-                    SiliconButton(title: "开启新的一天", systemImage: "sunrise.fill") {
+                    SiliconButton(title: viewModel.actionTitle, systemImage: "sunrise.fill") {
                         viewModel.startNewDay()
                     }
 
@@ -28,10 +39,15 @@ struct HomeView: View {
                 }
                 .padding(.horizontal, ChaogeTheme.Spacing.large)
                 .padding(.top, ChaogeTheme.Spacing.xxlarge)
+                .padding(.bottom, ChaogeTheme.Spacing.xlarge)
             }
         }
         .task {
             await viewModel.loadFortune()
         }
     }
+}
+
+#Preview {
+    HomeView()
 }

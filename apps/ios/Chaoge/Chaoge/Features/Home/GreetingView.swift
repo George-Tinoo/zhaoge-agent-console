@@ -1,8 +1,13 @@
 import SwiftUI
 
 struct GreetingView: View {
-    private var greeting: String {
-        let hour = Calendar.current.component(.hour, from: .now)
+    private let hour: Int
+
+    init(date: Date = .now, calendar: Calendar = .current) {
+        self.hour = calendar.component(.hour, from: date)
+    }
+
+    static func greeting(forHour hour: Int) -> String {
         switch hour {
         case 5..<12:
             return "早安"
@@ -15,7 +20,7 @@ struct GreetingView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.small) {
-            Text(greeting)
+            Text(Self.greeting(forHour: hour))
                 .font(ChaogeFonts.h1)
                 .textGlow()
 
@@ -24,5 +29,6 @@ struct GreetingView: View {
                 .foregroundStyle(ChaogeColors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
+        .accessibilityElement(children: .combine)
     }
 }
