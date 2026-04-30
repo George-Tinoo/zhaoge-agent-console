@@ -40,6 +40,7 @@
 		0B0000172B8F000100000001 /* CrystalInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0001172B8F000100000001 /* CrystalInput.swift */; };
 		0B0000182B8F000100000001 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0001182B8F000100000001 /* MessageBubble.swift */; };
 		0B0000192B8F000100000001 /* PlaceholderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0001192B8F000100000001 /* PlaceholderScreen.swift */; };
+		0B00001F2B8F000100000001 /* DashboardComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B00011F2B8F000100000001 /* DashboardComponents.swift */; };
 		0B00001A2B8F000100000001 /* SiliconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B00011A2B8F000100000001 /* SiliconButton.swift */; };
 		0B00001B2B8F000100000001 /* StatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B00011B2B8F000100000001 /* StatusIndicator.swift */; };
 		0B00001C2B8F000100000001 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B00011C2B8F000100000001 /* Colors.swift */; };
@@ -94,6 +95,7 @@
 		0B0001172B8F000100000001 /* CrystalInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chaoge/UI/Components/CrystalInput.swift; sourceTree = SOURCE_ROOT; };
 		0B0001182B8F000100000001 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chaoge/UI/Components/MessageBubble.swift; sourceTree = SOURCE_ROOT; };
 		0B0001192B8F000100000001 /* PlaceholderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chaoge/UI/Components/PlaceholderScreen.swift; sourceTree = SOURCE_ROOT; };
+		0B00011F2B8F000100000001 /* DashboardComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chaoge/UI/Components/DashboardComponents.swift; sourceTree = SOURCE_ROOT; };
 		0B00011A2B8F000100000001 /* SiliconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chaoge/UI/Components/SiliconButton.swift; sourceTree = SOURCE_ROOT; };
 		0B00011B2B8F000100000001 /* StatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chaoge/UI/Components/StatusIndicator.swift; sourceTree = SOURCE_ROOT; };
 		0B00011C2B8F000100000001 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chaoge/UI/Theme/Colors.swift; sourceTree = SOURCE_ROOT; };
@@ -314,6 +316,7 @@
 				0B0000172B8F000100000001 /* CrystalInput.swift in Sources */,
 				0B0000182B8F000100000001 /* MessageBubble.swift in Sources */,
 				0B0000192B8F000100000001 /* PlaceholderScreen.swift in Sources */,
+				0B00001F2B8F000100000001 /* DashboardComponents.swift in Sources */,
 				0B00001A2B8F000100000001 /* SiliconButton.swift in Sources */,
 				0B00001B2B8F000100000001 /* StatusIndicator.swift in Sources */,
 				0B00001C2B8F000100000001 /* Colors.swift in Sources */,
