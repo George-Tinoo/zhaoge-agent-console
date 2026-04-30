@@ -8,38 +8,34 @@ struct TaskListView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                ChaogeColors.appBackground
-                    .ignoresSafeArea()
+        ZStack {
+            ChaogeColors.appBackground
+                .ignoresSafeArea()
 
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
-                        ScreenHeader(
-                            eyebrow: "TASK BOARD",
-                            title: "任务看板",
-                            subtitle: "展示当前战局的待办、进行中、阻塞与已完成任务。",
-                            systemImage: "checklist.checked"
-                        )
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
+                    ScreenHeader(
+                        eyebrow: "TASK BOARD",
+                        title: "任务看板",
+                        subtitle: "展示当前战局的待办、进行中、阻塞与已完成任务。",
+                        systemImage: "checklist.checked"
+                    )
 
-                        HStack(spacing: ChaogeTheme.Spacing.medium) {
-                            MetricPill(title: "活跃任务", value: "\(activeTasks.count)", color: ChaogeColors.refractionCyan)
-                            MetricPill(title: "总任务", value: "\(tasks.count)", color: ChaogeColors.refractionGold)
-                        }
-
-                        ForEach(tasks) { task in
-                            TaskCard(task: task)
-                        }
-
-                        Spacer(minLength: 92)
+                    HStack(spacing: ChaogeTheme.Spacing.medium) {
+                        MetricPill(title: "活跃任务", value: "\(activeTasks.count)", color: ChaogeColors.refractionCyan)
+                        MetricPill(title: "总任务", value: "\(tasks.count)", color: ChaogeColors.refractionGold)
                     }
-                    .padding(.horizontal, ChaogeTheme.Spacing.large)
-                    .padding(.top, ChaogeTheme.Spacing.xxlarge)
-                    .padding(.bottom, ChaogeTheme.Spacing.xlarge)
+
+                    ForEach(tasks) { task in
+                        TaskCard(task: task)
+                    }
+
+                    Spacer(minLength: 92)
                 }
+                .padding(.horizontal, ChaogeTheme.Spacing.large)
+                .padding(.top, ChaogeTheme.Spacing.xxlarge)
+                .padding(.bottom, ChaogeTheme.Spacing.xlarge)
             }
-            .navigationTitle("任务")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

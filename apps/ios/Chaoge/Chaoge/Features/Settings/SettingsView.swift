@@ -4,58 +4,54 @@ struct SettingsView: View {
     private let sections = SettingsPreviewData.sections
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                ChaogeColors.appBackground
-                    .ignoresSafeArea()
+        ZStack {
+            ChaogeColors.appBackground
+                .ignoresSafeArea()
 
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
-                        ScreenHeader(
-                            eyebrow: "LOCAL CONTROL",
-                            title: "设置中枢",
-                            subtitle: "当前为本地 MVP：展示环境、仓库与后续连接入口。",
-                            systemImage: "gearshape.fill"
-                        )
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
+                    ScreenHeader(
+                        eyebrow: "LOCAL CONTROL",
+                        title: "设置中枢",
+                        subtitle: "当前为本地 MVP：展示环境、仓库与后续连接入口。",
+                        systemImage: "gearshape.fill"
+                    )
 
-                        CrystalCard(isActive: true) {
-                            VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.medium) {
-                                HStack(spacing: ChaogeTheme.Spacing.medium) {
-                                    Image(systemName: "iphone.gen3.radiowaves.left.and.right")
-                                        .font(.system(size: 28, weight: .semibold))
-                                        .foregroundStyle(ChaogeColors.refractionCyan)
+                    CrystalCard(isActive: true) {
+                        VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.medium) {
+                            HStack(spacing: ChaogeTheme.Spacing.medium) {
+                                Image(systemName: "iphone.gen3.radiowaves.left.and.right")
+                                    .font(.system(size: 28, weight: .semibold))
+                                    .foregroundStyle(ChaogeColors.refractionCyan)
 
-                                    VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.xsmall) {
-                                        Text("朝歌 iOS MVP")
-                                            .font(ChaogeFonts.h3)
-                                            .foregroundStyle(ChaogeColors.textPrimary)
+                                VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.xsmall) {
+                                    Text("朝歌 iOS MVP")
+                                        .font(ChaogeFonts.h3)
+                                        .foregroundStyle(ChaogeColors.textPrimary)
 
-                                        Text("已通过 Xcode 构建与模拟器启动验证")
-                                            .font(ChaogeFonts.small)
-                                            .foregroundStyle(ChaogeColors.textSecondary)
-                                    }
-                                }
-
-                                HStack(spacing: ChaogeTheme.Spacing.small) {
-                                    StatusBadge(text: "本地预览", color: ChaogeColors.refractionCyan)
-                                    StatusBadge(text: "Mock 数据", color: ChaogeColors.refractionGold)
+                                    Text("已通过 Xcode 构建与模拟器启动验证")
+                                        .font(ChaogeFonts.small)
+                                        .foregroundStyle(ChaogeColors.textSecondary)
                                 }
                             }
-                        }
 
-                        ForEach(sections) { section in
-                            SettingsSectionCard(section: section)
+                            HStack(spacing: ChaogeTheme.Spacing.small) {
+                                StatusBadge(text: "本地预览", color: ChaogeColors.refractionCyan)
+                                StatusBadge(text: "Mock 数据", color: ChaogeColors.refractionGold)
+                            }
                         }
-
-                        Spacer(minLength: 92)
                     }
-                    .padding(.horizontal, ChaogeTheme.Spacing.large)
-                    .padding(.top, ChaogeTheme.Spacing.xxlarge)
-                    .padding(.bottom, ChaogeTheme.Spacing.xlarge)
+
+                    ForEach(sections) { section in
+                        SettingsSectionCard(section: section)
+                    }
+
+                    Spacer(minLength: 92)
                 }
+                .padding(.horizontal, ChaogeTheme.Spacing.large)
+                .padding(.top, ChaogeTheme.Spacing.xxlarge)
+                .padding(.bottom, ChaogeTheme.Spacing.xlarge)
             }
-            .navigationTitle("设置")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -4,35 +4,31 @@ struct ProjectListView: View {
     private let projects = ProjectPreviewData.projects
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                ChaogeColors.appBackground
-                    .ignoresSafeArea()
+        ZStack {
+            ChaogeColors.appBackground
+                .ignoresSafeArea()
 
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
-                        ScreenHeader(
-                            eyebrow: "PROJECT MATRIX",
-                            title: "项目矩阵",
-                            subtitle: "先以本地状态卡展示朝歌、迁都、妲己与子牙四条主线。",
-                            systemImage: "square.stack.3d.up.fill"
-                        )
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
+                    ScreenHeader(
+                        eyebrow: "PROJECT MATRIX",
+                        title: "项目矩阵",
+                        subtitle: "先以本地状态卡展示朝歌、迁都、妲己与子牙四条主线。",
+                        systemImage: "square.stack.3d.up.fill"
+                    )
 
-                        ProjectOverviewRow(projects: projects)
+                    ProjectOverviewRow(projects: projects)
 
-                        ForEach(projects) { project in
-                            ProjectCard(project: project)
-                        }
-
-                        Spacer(minLength: 92)
+                    ForEach(projects) { project in
+                        ProjectCard(project: project)
                     }
-                    .padding(.horizontal, ChaogeTheme.Spacing.large)
-                    .padding(.top, ChaogeTheme.Spacing.xxlarge)
-                    .padding(.bottom, ChaogeTheme.Spacing.xlarge)
+
+                    Spacer(minLength: 92)
                 }
+                .padding(.horizontal, ChaogeTheme.Spacing.large)
+                .padding(.top, ChaogeTheme.Spacing.xxlarge)
+                .padding(.bottom, ChaogeTheme.Spacing.xlarge)
             }
-            .navigationTitle("项目")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -4,33 +4,29 @@ struct ChatListView: View {
     private let sessions = ChatPreviewData.sessions
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                ChaogeColors.appBackground
-                    .ignoresSafeArea()
+        ZStack {
+            ChaogeColors.appBackground
+                .ignoresSafeArea()
 
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
-                        ScreenHeader(
-                            eyebrow: "AGENT SESSIONS",
-                            title: "会话中枢",
-                            subtitle: "先以本地样例展示妲己、子牙与朝歌控制台的会话入口。",
-                            systemImage: "bubble.left.and.bubble.right.fill"
-                        )
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: ChaogeTheme.Spacing.large) {
+                    ScreenHeader(
+                        eyebrow: "AGENT SESSIONS",
+                        title: "会话中枢",
+                        subtitle: "先以本地样例展示妲己、子牙与朝歌控制台的会话入口。",
+                        systemImage: "bubble.left.and.bubble.right.fill"
+                    )
 
-                        ForEach(sessions) { session in
-                            ChatSessionCard(session: session)
-                        }
-
-                        Spacer(minLength: 92)
+                    ForEach(sessions) { session in
+                        ChatSessionCard(session: session)
                     }
-                    .padding(.horizontal, ChaogeTheme.Spacing.large)
-                    .padding(.top, ChaogeTheme.Spacing.xxlarge)
-                    .padding(.bottom, ChaogeTheme.Spacing.xlarge)
+
+                    Spacer(minLength: 92)
                 }
+                .padding(.horizontal, ChaogeTheme.Spacing.large)
+                .padding(.top, ChaogeTheme.Spacing.xxlarge)
+                .padding(.bottom, ChaogeTheme.Spacing.xlarge)
             }
-            .navigationTitle("聊天")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -69,7 +65,7 @@ private struct ChatSessionCard: View {
 
                     Spacer()
 
-                    Image(systemName: "chevron.right")
+                    Text(session.timeAgo)
                         .font(ChaogeFonts.caption)
                         .foregroundStyle(ChaogeColors.textTertiary)
                 }
@@ -84,72 +80,63 @@ private struct ChatSessionCard: View {
                             .fill(session.accentColor.opacity(0.10))
                     )
 
-                HStack {
-                    Label(session.updatedText, systemImage: "clock")
-                    Spacer()
-                    Label(session.messageCountText, systemImage: "text.bubble")
+                HStack(spacing: ChaogeTheme.Spacing.small) {
+                    ForEach(session.tags, id: \.self) { tag in
+                        StatusBadge(text: tag, color: session.accentColor)
+                    }
                 }
-                .font(ChaogeFonts.caption)
-                .foregroundStyle(ChaogeColors.textTertiary)
             }
         }
     }
 }
 
 private struct ChatPreviewSession: Identifiable {
-    let id: String
+    let id = UUID()
+    let avatar: String
     let title: String
     let subtitle: String
-    let avatar: String
+    let lastMessage: String
+    let timeAgo: String
+    let tags: [String]
     let status: StatusIndicatorState
     let accentColor: Color
-    let lastMessage: String
-    let updatedText: String
-    let messageCount: Int
-
-    var isActive: Bool { status != .offline }
-    var messageCountText: String { "\(messageCount) 条" }
+    let isActive: Bool
 }
 
 private enum ChatPreviewData {
     static let sessions: [ChatPreviewSession] = [
         ChatPreviewSession(
-            id: "daji",
-            title: "妲己 · OpenClaw",
-            subtitle: "连续性、记忆与日常陪伴",
             avatar: "🦊",
+            title: "妲己 / OpenClaw",
+            subtitle: "主线陪伴、记忆连续性与产品感知",
+            lastMessage: "朝歌二阶段已展开，先以本地卡片承载会话入口，后续接入真实对话流。",
+            timeAgo: "刚刚",
+            tags: ["主线", "陪伴", "OpenClaw"],
             status: .online,
             accentColor: ChaogeColors.refractionRose,
-            lastMessage: "朝歌已可在 Xcode 中运行，臣妾正等待接入真实会话记录。",
-            updatedText: "刚刚",
-            messageCount: 18
+            isActive: true
         ),
         ChatPreviewSession(
-            id: "ziya",
-            title: "子牙 · Hermes",
-            subtitle: "策略、代码、审计与执行",
             avatar: "🎣",
+            title: "子牙 / Hermes",
+            subtitle: "代码、审计、迁都与战略执行",
+            lastMessage: "臣已将任务、项目、设置三路骨架铺开，等待大王校阅下一步战令。",
+            timeAgo: "3 分钟",
+            tags: ["代码", "策略", "Hermes"],
             status: .busy,
             accentColor: ChaogeColors.refractionCyan,
-            lastMessage: "第二阶段先填充本地 MVP，再择机接入 Hermes/OpenClaw 服务。",
-            updatedText: "5 分钟前",
-            messageCount: 27
+            isActive: true
         ),
         ChatPreviewSession(
-            id: "court",
-            title: "朝歌中枢",
-            subtitle: "系统事件与任务回报",
             avatar: "🏛️",
+            title: "朝歌控制台",
+            subtitle: "系统事件、构建结果与同步记录",
+            lastMessage: "GitHub 同步完成，iOS MVP 已进入可运行验证阶段。",
+            timeAgo: "今天",
+            tags: ["系统", "GitHub", "Xcode"],
             status: .offline,
             accentColor: ChaogeColors.refractionGold,
-            lastMessage: "等待后续接入本地事件流、迁都进度与项目状态。",
-            updatedText: "待启用",
-            messageCount: 3
+            isActive: false
         )
     ]
-}
-
-#Preview {
-    ChatListView()
-        .preferredColorScheme(.dark)
 }
