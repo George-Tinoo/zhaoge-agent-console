@@ -89,33 +89,41 @@ struct MainTabView: View {
         }
         .padding(.horizontal, ChaogeTheme.Spacing.small)
         .padding(.vertical, ChaogeTheme.Spacing.small)
-        .background {
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(ChaogeColors.siliconDark.opacity(0.96))
-                .background(
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .fill(.ultraThinMaterial)
-                )
-                .overlay(
-                    LinearGradient(
-                        colors: [
-                            ChaogeColors.refractionCyan.opacity(0.20),
-                            ChaogeColors.crystalBorder.opacity(0.32),
-                            ChaogeColors.refractionPurple.opacity(0.16)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                )
-        }
-        .overlay {
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(ChaogeColors.crystalBorder, lineWidth: ChaogeTheme.Stroke.crystal)
-        }
+        .background(tabBarBackground)
+        .overlay(tabBarBorder)
         .shadow(color: ChaogeColors.refractionCyan.opacity(0.18), radius: 24, y: 8)
         .padding(.horizontal, ChaogeTheme.Spacing.large)
         .padding(.bottom, ChaogeTheme.Spacing.small)
+    }
+
+    private var tabBarBackground: some View {
+        RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .fill(ChaogeColors.siliconDark.opacity(0.96))
+            .background(tabBarMaterial)
+            .overlay(tabBarGlow)
+    }
+
+    private var tabBarMaterial: some View {
+        RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .fill(.ultraThinMaterial)
+    }
+
+    private var tabBarGlow: some View {
+        LinearGradient(
+            colors: [
+                ChaogeColors.refractionCyan.opacity(0.20),
+                ChaogeColors.crystalBorder.opacity(0.32),
+                ChaogeColors.refractionPurple.opacity(0.16)
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+    }
+
+    private var tabBarBorder: some View {
+        RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .stroke(ChaogeColors.crystalBorder, lineWidth: ChaogeTheme.Stroke.crystal)
     }
 }
 
