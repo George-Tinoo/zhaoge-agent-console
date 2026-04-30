@@ -110,22 +110,12 @@ struct MainTabView: View {
 
     private var tabBarGlow: some View {
         RoundedRectangle(cornerRadius: 24, style: .continuous)
-            .fill(
-                LinearGradient(
-                    colors: [
-                        ChaogeColors.refractionCyan.opacity(0.20),
-                        ChaogeColors.crystalBorder.opacity(0.32),
-                        ChaogeColors.refractionPurple.opacity(0.16)
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
+            .fill(Color.cyan.opacity(0.12))
     }
 
     private var tabBarBorder: some View {
         RoundedRectangle(cornerRadius: 24, style: .continuous)
-            .stroke(ChaogeColors.crystalBorder, lineWidth: ChaogeTheme.Stroke.crystal)
+            .stroke(ChaogeColors.refractionCyan.opacity(0.34), lineWidth: ChaogeTheme.Stroke.crystal)
     }
 }
 
