@@ -109,16 +109,18 @@ struct MainTabView: View {
     }
 
     private var tabBarGlow: some View {
-        LinearGradient(
-            colors: [
-                ChaogeColors.refractionCyan.opacity(0.20),
-                ChaogeColors.crystalBorder.opacity(0.32),
-                ChaogeColors.refractionPurple.opacity(0.16)
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .fill(
+                LinearGradient(
+                    colors: [
+                        ChaogeColors.refractionCyan.opacity(0.20),
+                        ChaogeColors.crystalBorder.opacity(0.32),
+                        ChaogeColors.refractionPurple.opacity(0.16)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            )
     }
 
     private var tabBarBorder: some View {
